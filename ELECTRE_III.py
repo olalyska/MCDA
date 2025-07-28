@@ -46,11 +46,6 @@ def create_electre_III_dataset(Q_val=Q_val, P_val=P_val, V_val=V_val, W_val=W_va
         final_scores_matrix = final_scores_matrix.reshape(-1, 1)
 
     df = join_scores_matrix_and_dataset(final_scores_matrix, dataset)
-    # final_scores_matrix = final_scores_matrix.astype(np.int64)
-    # points_plus_final_scores = np.hstack((dataset, final_scores_matrix))
-    # points_plus_final_scores = points_plus_final_scores.astype(object)
-    # points_plus_final_scores[:, -1] = points_plus_final_scores[:, -1].astype(int)
-    # df = pd.DataFrame(points_plus_final_scores)
 
     # save the data to file
     save_data_to_file(df, f"data/ELECTRE_III/ELE_III_Q{Q_val}_P{P_val}_V{V_val}_W{W_val}.csv")
