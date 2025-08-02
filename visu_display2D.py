@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import math
 
 # === CONFIG ===
-FOLDER = r"C:\Users\ola72\Documents\magisterka\datasetgenerator\data\ELECTRE_III"  # <-- CHANGE THIS TO YOUR FOLDER
+FOLDER = r"C:\Users\ola72\Documents\magisterka\datasetgenerator\data\TOPSIS_2x"  # <-- CHANGE THIS TO YOUR FOLDER
 color_map = {
     0: 'yellow',
     1: 'blue',

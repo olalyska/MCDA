@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from dash import Dash, dcc, html, Input, Output
 
 # === CONFIG ===
-FOLDER = r"C:\Users\ola72\Documents\magisterka\datasetgenerator\data\PROMETHEE_I"  # CHANGE this to your data folder
+FOLDER = r"C:\Users\ola72\Documents\magisterka\datasetgenerator\data\ELECTRE_III"  # CHANGE this to your data folder
 POINT_SIZE = 6
 ###############
 
