@@ -4,7 +4,7 @@ from download_dataset import *
 # COMPLETE THE DATA
 step = 0.01
 criteria_count = 2
-threshold_list = [0.1, 0.02, 0.2]
+threshold_list = [0.005, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9]
 W_val = 1  # Weights Value
 criterion_type_val = 'max'  # Criterion Type: 'max' or 'min'
 MIDDLE_POINT = np.array([[0.5 for i in range(0, criteria_count)]], dtype=float)
@@ -27,7 +27,7 @@ def create_topsis_dataset(threshold, dataset, W_val=W_val, criterion_type_val=cr
             final_scores_matrix = np.append(final_scores_matrix, 2)
             continue
         matrix = np.vstack((row, MIDDLE_POINT))
-        X = np.copy(dataset)
+        X = np.copy(matrix)
         w = np.copy(weights)
         # Normalization - minmax
         min_val = np.min(X, axis=0)
@@ -38,7 +38,7 @@ def create_topsis_dataset(threshold, dataset, W_val=W_val, criterion_type_val=cr
         v_ij = r_ij * w
         p_ideal_A = np.zeros(X.shape[1])
         n_ideal_A = np.zeros(X.shape[1])
-        for i in range(0, dataset.shape[1]):
+        for i in range(0, matrix.shape[1]):
             if (criterion_type[i] == 'max'):
                 p_ideal_A[i] = np.max(v_ij[:, i])
                 n_ideal_A[i] = np.min(v_ij[:, i])
@@ -58,7 +58,6 @@ def create_topsis_dataset(threshold, dataset, W_val=W_val, criterion_type_val=cr
         # incomparable -> 0 "R"
         point_closeness = closeness_matrix[0]
         middle_point_closeness = closeness_matrix[1]
-        print(f"{point_closeness}, {middle_point_closeness}")
         if abs(middle_point_closeness - point_closeness) <= threshold:
             final_scores_matrix = np.append(final_scores_matrix, 2)
         elif point_closeness < middle_point_closeness:

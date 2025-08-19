@@ -3,17 +3,18 @@ from pyDecision.algorithm import electre_iii
 from download_dataset import *
 
 # COMPLETE THE DATA
-step = 0.01
+step = 0.02
 criteria_count = 2
 # Q_list = [0, 0.05, 0.1, 0.15, 0.2, 0.4]
-# P_list = [round(q + 0.05,2) for q in Q_list]
-# V_list = [1 - q for q in Q_list]
+Q_list = [0.3, 0.4, 0.5, 0.6]
+P_list = [0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
+V_list = [0.6, 0.7, 0.8, 0.9, 1]
 W_list = [1]  # weights
 MIDDLE_POINT = np.array([0.5 for i in range(0, criteria_count)])
 ####################
-Q_list = [0.1]
-P_list = [0.2]
-V_list = [0.8]
+# Q_list = [0.1]
+# P_list = [0.2]
+# V_list = [0.8]
 
 dataset = download_dataset_with_middle_point(step, criteria_count)
 
@@ -35,7 +36,7 @@ def create_electre_III_dataset(Q_val, P_val, V_val, W_val, dataset=dataset):
     # incomparable -> 0 "R"
     final_scores_matrix = np.array([])
     for i in range(0, len(p1)-1):
-        print(p1[-1][i])
+        # print(p1[-1][i])
         if p1[-1][i] == 'P+':
             final_scores_matrix = np.append(final_scores_matrix, 1)
         elif p1[-1][i] == 'I':
@@ -46,7 +47,7 @@ def create_electre_III_dataset(Q_val, P_val, V_val, W_val, dataset=dataset):
             final_scores_matrix = np.append(final_scores_matrix, 0)
         elif p1[-1][i] == '-':
             final_scores_matrix = np.append(final_scores_matrix, np.nan)
-        print(final_scores_matrix)
+        # print(final_scores_matrix)
         final_scores_matrix = final_scores_matrix.reshape(-1, 1)
 
     df = join_scores_matrix_and_dataset(final_scores_matrix, dataset[:-1, :])
@@ -59,6 +60,8 @@ counter = 0
 for Q in Q_list:
     for P in P_list:
         for V in V_list:
+            if Q > P or P > V or Q > V:
+                continue
             for W in W_list:
                 start_time = time.perf_counter()
                 create_electre_III_dataset(Q_val=Q, P_val=P, V_val=V, W_val=W)

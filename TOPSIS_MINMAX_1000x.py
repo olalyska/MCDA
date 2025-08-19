@@ -4,7 +4,7 @@ from download_dataset import *
 # COMPLETE THE DATA
 step = 0.01
 criteria_count = 2
-threshold_list = [0.1, 0.02, 0.2]
+threshold_list = [0.005, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.7, 0.8, 0.9]
 W_val = 1  # Weights Value
 criterion_type_val = 'max'  # Criterion Type: 'max' or 'min'
 MIDDLE_POINT = np.array([[0.5 for i in range(0, criteria_count)]], dtype=float)

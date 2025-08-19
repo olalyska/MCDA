@@ -30,7 +30,8 @@ def join_scores_matrix_and_dataset(final_scores_matrix, dataset):
     points_plus_final_scores = np.hstack((dataset, final_scores_matrix))
     points_plus_final_scores = points_plus_final_scores.astype(object)
     points_plus_final_scores[:, -1] = points_plus_final_scores[:, -1].astype(int)
-    df = pd.DataFrame(points_plus_final_scores[:-1])
+    # df = pd.DataFrame(points_plus_final_scores[:-1])
+    df = pd.DataFrame(points_plus_final_scores[:])
     return df
 
 

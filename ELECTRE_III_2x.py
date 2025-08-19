@@ -3,16 +3,16 @@ from download_dataset import *
 import time
 
 # COMPLETE THE DATA
-step = 0.5
+step = 0.01
 criteria_count = 2
-Q_list = [0, 0.05, 0.1, 0.15, 0.2, 0.4]
-P_list = [round(q + 0.05,2) for q in Q_list]
+Q_list = [0, 0.05, 0.1, 0.2]
+P_list = [0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
 V_list = [1 - q for q in Q_list]
 W_list = [1]  # weights
 MIDDLE_POINT = np.array([0.5 for i in range(0, criteria_count)])
 ####################
 
-dataset = download_dataset(step, criteria_count)
+dataset = download_dataset_with_middle_point(step, criteria_count)
 
 
 def create_electre_III_dataset(Q_val, P_val, V_val, W_val, dataset=dataset):
@@ -56,6 +56,8 @@ counter = 0
 for Q in Q_list:
     for P in P_list:
         for V in V_list:
+            if Q > P or P > V or Q > V:
+                continue
             for W in W_list:
                 start_time = time.perf_counter()
                 create_electre_III_dataset(Q_val=Q, P_val=P, V_val=V, W_val=W)

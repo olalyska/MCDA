@@ -5,9 +5,9 @@ from download_dataset import *
 # COMPLETE THE DATA
 step = 0.02
 criteria_count = 2
-Q_list = [0.1]
-S_list = [0.5]  # (-1,1)
-P_list = [0.2]
+Q_list = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+S_list = [0]  # (-1,1)
+P_list = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 F_list = ['t4']
 W_list = [1]  # 't1' = Usual; 't2' = U-Shape; 't3' = V-Shape; 't4' = Level; 't5' = V-Shape with Indifference; 't6' = Gaussian; 't7' = C-Form
 MIDDLE_POINT = np.array([[0.5 for i in range(0, criteria_count)]], dtype=float)
@@ -49,6 +49,7 @@ def create_pro_I_dataset(Q_val, S_val, P_val, W_val, F_val):
     df = join_scores_matrix_and_dataset(final_scores_matrix, dataset)
 
     # save the data to file
+    # save_data_to_file(df, f"data/PROMETHEE_I_1000x/PRO_I_1000x_Q{Q_val}_S{S_val}_P{P_val}_F({F_val}).csv")
     save_data_to_file(df, f"data/PROMETHEE_I_1000x/PRO_I_1000x_Q{Q_val}_S{S_val}_P{P_val}_F({F_val}).csv")
 
 
@@ -57,6 +58,8 @@ counter = 0
 for Q in Q_list:
     for S in S_list:
         for P in P_list:
+            if Q >= P:
+                continue
             for F in F_list:
                 for W in W_list:
                     start_time = time.perf_counter()

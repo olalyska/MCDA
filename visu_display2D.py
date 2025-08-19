@@ -22,7 +22,7 @@ cols = 5  # Number of columns in the grid
 rows = math.ceil(num_files / cols)
 
 fig, axes = plt.subplots(rows, cols, figsize=(cols * 4, rows * 4), squeeze=False)
-fig.suptitle("All Plots (Filtered by y == 0.0)", fontsize=16)
+# fig.suptitle("All Plots (Filtered by y == 0.0)", fontsize=16)
 
 # === Loop through files and plot ===
 for idx, filename in enumerate(file_list):
@@ -53,13 +53,13 @@ for idx, filename in enumerate(file_list):
         )
 
     ax.set_title(filename, fontsize=8)
-    ax.set_xlabel("x")
-    ax.set_ylabel("y")
+    # ax.set_xlabel("x")
+    # ax.set_ylabel("y")
     ax.grid(False)
 
 # Hide unused subplots
 for i in range(num_files, rows * cols):
     fig.delaxes(axes[i // cols][i % cols])
 
-plt.tight_layout(rect=[0, 0, 1, 0.97])
+plt.tight_layout(h_pad=3,w_pad=3, rect=[0, 0, 1, 0.97])
 plt.show()

@@ -3,11 +3,11 @@ from pyDecision.algorithm import promethee_i
 from download_dataset import *
 
 # COMPLETE THE DATA
-step = 0.02
+step = 0.01
 criteria_count = 2
-Q_list = [0.1]
-S_list = [0.5]  # (-1,1)
-P_list = [0.2]
+Q_list = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+S_list = [0]  # (-1,1)
+P_list = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 F_list = ['t4']
 W_list = [1]  # 't1' = Usual; 't2' = U-Shape; 't3' = V-Shape; 't4' = Level; 't5' = V-Shape with Indifference; 't6' = Gaussian; 't7' = C-Form
 MIDDLE_POINT = np.array([[0.5 for i in range(0, criteria_count)]], dtype=float)
